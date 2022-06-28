@@ -1,3 +1,6 @@
-<h1>
-    Mail Gönderildi.... {{$email}}
-</h1>
+
+<div>
+    <h1>
+        Gönderilen E-Posta: {{ $email }}
+    </h1>
+</div>

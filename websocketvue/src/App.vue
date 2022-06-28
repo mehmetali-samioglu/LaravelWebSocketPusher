@@ -1,32 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
+    <li v-for="message in messages" :key="message">
+        {{message}}
+    </li>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  mounted() {
-    window.Echo.channel('mesaj-kanal-adi')
-        .listen('NotificationEvent' ,(e)=>{
-            console.log(e)
-        });
-  },
-}
-</script>
+    name: 'App',
+    components: {
+    },
+        data() {
+            return {
+                messages:[]
+            }
+        },
+    mounted() {
+        window.Echo.channel('notification-channel')
+            .listen('NotificationEvent' ,(e)=>{
+                this.messages.push(e.gelen_mesaj)
+            });
+    },
+    }
+    </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+    }
 </style>

@@ -24,3 +24,7 @@ Route::get('/broadcast', function () {
     event( new NotificationEvent( $message,'sami@sami.com' ) );
     echo 'Giden Mesaj: '. $message;
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

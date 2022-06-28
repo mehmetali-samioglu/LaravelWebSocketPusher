@@ -32,7 +32,7 @@ class NotificationEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('mesaj-kanal-adi');
+        return new Channel('notification-channel');
     }
 
     public function broadcastWith()

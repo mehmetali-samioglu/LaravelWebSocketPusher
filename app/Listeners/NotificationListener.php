@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\NotificationEvent;
 use App\Mail\NotificationMail;
+use App\Models\Message;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class NotificationListener
      */
     public function handle( NotificationEvent $event)
     {
-        DB::table('message')->insert(
+        Message::create(
             [
                 'message' => $event->message,
                 'email' => $event->email
@@ -37,6 +38,6 @@ class NotificationListener
         );
 
         //Burada mail gönderebiliriz.
-        Mail::to($event->email)->send(new NotificationMail($event->email));
+        // Mail::to($event->email)->send(new NotificationMail($event->email));
     }
 }
